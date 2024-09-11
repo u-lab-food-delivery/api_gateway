@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package user;
+option go_package = "genproto/user";
+
+service UserService {
+    rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
+    rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
+    rpc GetUserSettings (GetUserSettingsRequest) returns (GetUserSettingsResponse);
+    rpc UpdateUserSettings (UpdateUserSettingsRequest) returns (UpdateUserSettingsResponse);
+}
+
+message GetUserProfileRequest {
+    string user_id = 1;
+}
+
+message GetUserProfileResponse {
+    string user_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string phone_number = 4;
+    string profile_picture = 5;
+}
+
+message UpdateUserProfileRequest {
+    string user_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string phone_number = 4;
+    string profile_picture = 5;
+}
+
+message UpdateUserProfileResponse {
+    string message = 1;
+}
+
+message GetUserSettingsRequest {
+    string user_id = 1;
+}
+
+message GetUserSettingsResponse {
+    string language = 1;
+    string time_zone = 2;
+    string notification_preferences = 3;
+}
+
+message UpdateUserSettingsRequest {
+    string user_id = 1;
+    string language = 2;
+    string time_zone = 3;
+    string notification_preferences = 4;
+}
+
+message UpdateUserSettingsResponse {
+    string message = 1;
+}

@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "genproto/auth";
+
+// AuthService definition
+service AuthService {
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc LogOut (LogOutRequest) returns (EmptyMessage); 
+    rpc CreateToken (CreateTokenRequest) returns (CreateTokenResponse);
+    rpc GetToken (GetTokenRequest) returns (GetTokenResponse);
+    rpc RevokeToken (RevokeTokenRequest) returns (RevokeTokenResponse);
+    rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
+    rpc VerifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
+    rpc CheckByEmail (CheckByEmailRequest) returns (EmptyMessage); 
+}
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+    string verification_link = 3;
+}
+
+message RegisterResponse {
+    string user_id = 1;
+    string email = 2;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+message LogOutRequest {
+    string refresh_token = 1;
+}
+
+message CreateTokenRequest {
+    string user_id = 1;
+}
+
+message CreateTokenResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+message GetTokenRequest {
+    string token = 1;
+}
+
+message GetTokenResponse {
+    string email = 1;
+}
+
+message RevokeTokenRequest {
+    string token = 1;
+}
+
+message RevokeTokenResponse {
+    string message = 1;
+}
+
+message RefreshTokenRequest {
+    string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+    string access_token = 1;
+}
+
+message VerifyEmailRequest {
+    string token = 1;
+}
+
+message VerifyEmailResponse {
+    string message = 1;
+}
+
+message CheckByEmailRequest {
+    string email = 1;
+}
+
+message EmptyMessage {}
