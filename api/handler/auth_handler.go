@@ -2,6 +2,7 @@ package handler
 
 import (
 	"api_gateway/genproto/auth"
+	"api_gateway/messagebroker"
 	"context"
 	"log"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 
 type AuthHandler struct {
 	authService auth.AuthServiceClient
+	rabbitmq    *messagebroker.RabbitMQ
 }
 
 func NewAuthHandler(auth auth.AuthServiceClient) *AuthHandler {
