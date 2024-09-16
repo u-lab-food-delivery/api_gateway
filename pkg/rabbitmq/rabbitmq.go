@@ -25,4 +25,3 @@ func CreateChannel(conn *amqp.Connection) (*amqp.Channel, error) {
 	}
 	return ch, nil
 }
-
